@@ -44,13 +44,9 @@ class DB {
 
   // Find all roles, join with departments to display the department name
   findAllRoles() {
-    return this.connection
-      .query
-      // SELECT THE FOLLOWING COLUMNS:
-      // id, title, salary FROM role TABLE AND department name FROM department TABLE
-      // YOU NEED TO USE LEFT JOIN TO JOIN role and department TABLES
-      // TODO: YOUR CODE HERE
-      ();
+    return this.connection.query(
+      "SELECT role.id AS ID,role.title AS Title,role.salary AS Salary,department.name AS Department FROM role LEFT JOIN department ON role.department_id = department.id"
+    );
   }
 
   // Create a new role
