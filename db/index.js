@@ -9,7 +9,7 @@ class DB {
   // Find all employees, join with roles and departments to display their roles, salaries, departments, and managers
   findAllEmployees() {
     return this.connection.query(
-      "SELECT employee.id AS id,employee.first_name AS First,employee.last_name AS Last,employee.manager_id AS Manager,role.title AS Title,role.salary AS Salary,department.name AS Deparment FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id"
+      "SELECT employee.id AS ID,employee.first_name AS First,employee.last_name AS Last,role.title AS Title,role.salary AS Salary,department.name AS Deparment, IF(employee.manager_id IS NOT NULL, Concat(employee.first_name,' ' ,employee.last_name), 'Manager') AS Manager FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id"
     );
   }
 
