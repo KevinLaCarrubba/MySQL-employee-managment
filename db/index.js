@@ -28,10 +28,10 @@ class DB {
 
   // Update the given employee's role
   updateEmployeeRole(employeeId, roleId) {
-    return this.connection
-      .query
-      // TODO: YOUR CODE HERE
-      ();
+    return this.connection.query(
+      "UPDATE employee SET role_id = ? WHERE id = ?",
+      [roleId, employeeId]
+    );
   }
 
   // Update the given employee's manager
