@@ -9,11 +9,7 @@ class DB {
   // Find all employees, join with roles and departments to display their roles, salaries, departments, and managers
   findAllEmployees() {
     return this.connection.query(
-      // CREATE SELECT STATMENT WITH THE FOLLOWING COLUMNS FROM THREE TABLES.
-      // id, first_name, last_name FROM employee TABLE AND department name from department TABLE AND SELECT salary FROM role TABLE
-      // YOUR NEED TO USE LEFT JOINS TO JOIN THREE TABLES
-      // TODO: YOUR CODE HERE
-
+      "SELECT employee.id AS id,employee.first_name AS First,employee.last_name AS Last,employee.manager_id AS Manager,role.title AS Title,role.salary AS Salary,department.name AS Deparment FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id"
     );
   }
 
@@ -30,13 +26,12 @@ class DB {
     return this.connection.query("INSERT INTO employee SET ?", employee);
   }
 
-
   // Update the given employee's role
   updateEmployeeRole(employeeId, roleId) {
-    return this.connection.query(
+    return this.connection
+      .query
       // TODO: YOUR CODE HERE
-
-    );
+      ();
   }
 
   // Update the given employee's manager
@@ -49,23 +44,22 @@ class DB {
 
   // Find all roles, join with departments to display the department name
   findAllRoles() {
-    return this.connection.query(
+    return this.connection
+      .query
       // SELECT THE FOLLOWING COLUMNS:
       // id, title, salary FROM role TABLE AND department name FROM department TABLE
       // YOU NEED TO USE LEFT JOIN TO JOIN role and department TABLES
       // TODO: YOUR CODE HERE
-
-    );
+      ();
   }
 
   // Create a new role
   createRole(role) {
-    return this.connection.query(
+    return this.connection
+      .query
       // TODO: YOUR CODE HERE
-
-      );
+      ();
   }
-
 
   // Find all departments, join with employees and roles and sum up utilized department budget
   findAllDepartments() {
@@ -76,9 +70,10 @@ class DB {
 
   // Create a new department
   createDepartment(department) {
-    return this.connection.query(
+    return this.connection
+      .query
       // TODO: YOUR CODE HERE
-    );
+      ();
   }
 
   // Find all employees in a given department, join with roles to display role titles
