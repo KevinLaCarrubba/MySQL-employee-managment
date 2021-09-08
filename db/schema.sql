@@ -52,5 +52,4 @@ CREATE TABLE employee (
   REFERENCES employe(id)
   ON DELETE SET NULL
   
-
 );
