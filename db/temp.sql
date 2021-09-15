@@ -1,1 +1,0 @@
-SELECT employee.id AS ID,employee.first_name AS First,employee.last_name AS Last,role.title AS Title,role.salary AS Salary,department.name AS Deparment, IF(employee.manager_id IS NOT NULL, Concat(employee.first_name," " ,employee.last_name), "Manager") AS Manager FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id

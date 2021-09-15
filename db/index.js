@@ -9,7 +9,7 @@ class DB {
   // Find all employees, join with roles and departments to display their roles, salaries, departments, and managers
   findAllEmployees() {
     return this.connection.query(
-      "SELECT employee.id AS ID,employee.first_name AS First,employee.last_name AS Last,role.title AS Title,role.salary AS Salary,department.name AS Deparment, IF(employee.manager_id IS NOT NULL, Concat(employee.first_name,' ' ,employee.last_name), 'Manager') AS Manager FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id"
+      "SELECT employee.id ,employee.first_name ,employee.last_name ,role.title,role.salary,department.name, IF(employee.manager_id IS NOT NULL, Concat(employee.first_name,' ' ,employee.last_name), 'Manager') AS Manager FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id"
     );
   }
 
@@ -29,7 +29,7 @@ class DB {
   // Update the given employee's role
   updateEmployeeRole(employeeId, roleId) {
     return this.connection.query(
-      "UPDATE employee SET role_id = ? WHERE id = ?",
+      "UPDATE employee SET role_id = ? WHERE employee.id = ?",
       [roleId, employeeId]
     );
   }
@@ -45,7 +45,7 @@ class DB {
   // Find all roles, join with departments to display the department name
   findAllRoles() {
     return this.connection.query(
-      "SELECT role.id AS ID,role.title AS Title,role.salary AS Salary,department.name AS Department FROM role LEFT JOIN department ON role.department_id = department.id"
+      "SELECT role.id,role.title,role.salary,department.name AS Department FROM role LEFT JOIN department ON role.department_id = department.id"
     );
   }
 
